@@ -1,28 +1,23 @@
- "MainFrame" для размещения элементов интерфейса
-local MainFrame = script.Parent
+```python
+from System.Runtime.InteropServices import Marshal
 
-local BackgroundImage = Instance.new("Image")
-BackgroundImage.Parent = MainFrame
-BackgroundImage.Image = "path/to/your/image.png" 
-BackgroundImage.Size = UDim2.new(1, 0, 1, 0) 
+def onButton1Click():
+    print("Button 1 clicked")
 
-local CopyButton = Instance.new("TextButton")
-CopyButton.Parent = MainFrame
-CopyButton.Text = "Копировать текст"
-CopyButton.Position = UDim2.new(0.5, -50, 0.5, -25) 
-CopyButton.Size = UDim2.new(0, 100, 0, 50)
+def onButton2Click():
+    Marshal.WriteClipboard("Text to copy")
 
-CopyButton.MouseButton1Click:Connect(function()
-    local clipboard = game:GetService("Players").LocalPlayer:GetMouse().LastClick.Target
-    clipboard.Text = "Текст для копирования" -- Замените на нужный текст
-end)
+# Создание меню
+menu = Instance.new('ScreenGui')
+menu.Parent = game.Players.LocalPlayer.PlayerGui
 
-local Script1Button = Instance.new("TextButton")
-Script1Button.Parent = MainFrame
-Script1Button.Text = "Запустить скрипт 1"
+button1 = Instance.new('TextButton')
+button1.Parent = menu
+button1.Text = "Button 1"
+button1.MouseButton1Click:Connect(onButton1Click)
 
-Script1Button.MouseButton1Click:Connect(function()
-    -- Здесь должна быть логика запуска скрипта
-    -- Например:
-    game.Workspace.Script1:Activate() 
-end)
+button2 = Instance.new('TextButton')
+button2.Parent = menu
+button2.Text = "Copy Text"
+button2.MouseButton1Click:Connect(onButton2Click)
+```
