@@ -1,0 +1,28 @@
+ "MainFrame" для размещения элементов интерфейса
+local MainFrame = script.Parent
+
+local BackgroundImage = Instance.new("Image")
+BackgroundImage.Parent = MainFrame
+BackgroundImage.Image = "path/to/your/image.png" 
+BackgroundImage.Size = UDim2.new(1, 0, 1, 0) 
+
+local CopyButton = Instance.new("TextButton")
+CopyButton.Parent = MainFrame
+CopyButton.Text = "Копировать текст"
+CopyButton.Position = UDim2.new(0.5, -50, 0.5, -25) 
+CopyButton.Size = UDim2.new(0, 100, 0, 50)
+
+CopyButton.MouseButton1Click:Connect(function()
+    local clipboard = game:GetService("Players").LocalPlayer:GetMouse().LastClick.Target
+    clipboard.Text = "Текст для копирования" -- Замените на нужный текст
+end)
+
+local Script1Button = Instance.new("TextButton")
+Script1Button.Parent = MainFrame
+Script1Button.Text = "Запустить скрипт 1"
+
+Script1Button.MouseButton1Click:Connect(function()
+    -- Здесь должна быть логика запуска скрипта
+    -- Например:
+    game.Workspace.Script1:Activate() 
+end)
